@@ -187,5 +187,4 @@ $b=(X'X)^{-1}X'y$
 
 
 ##Q10
-
-
+![Fig. 1: RMS Titanic departing Southampton on April 10, 1912.](images/RMS_Titanic.jpg){width="363"}
