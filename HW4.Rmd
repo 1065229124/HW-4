@@ -109,12 +109,8 @@ qda_wkflow <- workflow() %>%
 
 
 
-<<<<<<< HEAD
 $3*10 = 30$, will fit 30 models.
-=======
-3x10 = 30, will fit 30 models
 
->>>>>>> 10e1a0c7e159128216a5e743a60b1a52596c34ba
 
 ##Q5
 
@@ -159,32 +155,41 @@ titanic_testing_pred <-
 
 titanic_testing_pred
 ```
-<<<<<<< HEAD
+
 
 Therefore, the testing accuracy is close to the average accuracy across folds, so the k-fold cross-validation method fits well.
+
+
 ##Q9
 
-=======
-##Q9
->>>>>>> 10e1a0c7e159128216a5e743a60b1a52596c34ba
-We should derivative from matrix form for which $y= Xb +\epsilon$
 
 
-$\begin{bmatrix}y_{1} \\y_{2} \\\vdots \\y_{N}\end{bmatrix}=\begin{bmatrix}x_{11} & x_{12} & \cdots & x_{1K} \\x_{21} & x_{22} & \cdots & x_{2K} \\\vdots & \ddots & \ddots & \vdots \\x_{N1} & x_{N2} & \cdots & x_{NK}\end{bmatrix}*\begin{bmatrix}b_{1} \\b_{2} \\\vdots \\b_{K}\end{bmatrix}+\begin{bmatrix}\epsilon_{1} \\\epsilon_{2} \\\vdots \\\epsilon_{N}\end{bmatrix}$
+$\sum_{i=1}^n (y_{i} - \beta - \epsilon)^2$
 
-$\epsilon'\epsilon = \begin{bmatrix}e_{1} & e_{2} & \cdots & e_{N} \\\end{bmatrix}\begin{bmatrix}e_{1} \\e_{2} \\\vdots \\e_{N}\end{bmatrix} = \sum_{i=1}^{N}e_{i}^{2}$
+then we get
 
-$e'e = (y-Xb)'(y-Xb)$
+$\sum_{i=1}^n (y_{i} - \beta)^2$
 
-$e'e = y'y - 2b'X'y + b'X'Xb$
+take derivative
 
-$\frac{\partial(e'e)}{\partial b} = -2X'y + 2X'Xb \stackrel{!}{=}0$
+$2\sum_{i=1}^n (y_{i} - \beta)=0$
 
-$X'Xb=X'y$
+$n\hat\beta=\sum_{i=1}^n y_i$
 
-$b=(X'X)^{-1}X'y$
+At last, we get that 
 
+$\hat\beta=\frac{\sum_{i=1}^n y_i}{n}$
 
 
 ##Q10
-![Fig. 1: RMS Titanic departing Southampton on April 10, 1912.](images/RMS_Titanic.jpg){width="363"}
+
+we can get that 
+
+$\hat{\beta}^{(1)}=\frac{\sum_{i=2}^n y_i}{n-1}$
+
+$\hat{\beta}^{(2)}=\frac{y_1+\sum_{i=3}^n y_i}{n-1}$
+
+Since they have uncorrelated error, which means 
+$Cov(y_i,y_j)=var(y_i)$ if i=j, $Cov(y_i,y_j)=0$ if $i\neq j$  
+
+Thus, $Cov(\hat\beta_1,\hat\beta_2)=Cov(\frac{\sum_{i=2}^n y_i}{n-1},\frac{y_1+\sum_{i=3}^n y_i}{n-1})=\frac{Cov(\sum_{i=2}^n y_i,y_1+\sum_{i=3}^n y_i)} {n-1}=\frac{(n-2)\sigma^2}{n-1}$
